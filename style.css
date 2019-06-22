@@ -123,4 +123,8 @@ header {
     display: flex;
     flex-direction: column;
   }
+  
+   .choice {
+    padding: 20px 0;
+  }
 }
