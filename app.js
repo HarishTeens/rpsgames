@@ -10,7 +10,7 @@ express.get("/", function(req, res) {
   res.render("index");
 });
 //Server Setup
-var server = express.listen(3000, function() {
+var server = express.listen(process.env.PORT, process.env.IP, function() {
   console.log("THe Server is running");
 });
 
