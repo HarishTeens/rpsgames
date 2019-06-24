@@ -27,108 +27,117 @@ const scoreboard = {
 //EMIT EVENTS
 
 //Chat Event Listener
-btn.addEventListener("click", function () {
-  socket.emit('chat', {
+btn.addEventListener("click", function() {
+  socket.emit("chat", {
     message: message.value,
     handle: playerName,
-    room:roomID
+    room: roomID
   });
-})
+});
 //Typing Event Listener
-message.addEventListener("keypress", function () {
-  socket.emit('typing', {
-    room:roomID,
-    player:playerName
+message.addEventListener("keypress", function() {
+  socket.emit("typing", {
+    room: roomID,
+    player: playerName
   });
-})
+});
 
 //GAME EVENTS
 
+function disconnect() {
+  socket.emit("disconnect", {
+    room: roomID
+  });
+}
+
 //Create New Game Listener
-$('#new').on('click', function () {
+$("#new").on("click", function() {
   playerType = true;
-  playerName = $('#nameNew').val();
+  playerName = $("#nameNew").val();
   $("#player1Name").html(playerName);
   if (!playerName) {
-    alert('Please enter your name.');
+    alert("Please enter your name.");
     return;
   }
-  socket.emit('createGame', { name: name });
+  socket.emit("createGame", { name: name });
   $(".menu").fadeOut();
   $(".gameBoard").fadeIn();
-})
+});
 //Join Game Listener
-$('#join').on('click', function () {
+$("#join").on("click", function() {
   playerType = false;
-  var name = $('#nameJoin').val();
+  var name = $("#nameJoin").val();
   playerName = name;
   $("#player2Name").html(name);
-  roomID = $('#room').val();
+  roomID = $("#room").val();
   if (!name || !roomID) {
-    alert('Please enter your name and game ID.');
+    alert("Please enter your name and game ID.");
     return;
   }
-  socket.emit('joinGame', { name: name, room: roomID });
+  socket.emit("joinGame", { name: name, room: roomID });
   $(".menu").fadeOut();
   $(".gameBoard").fadeIn();
 });
 
-
 //UI UPDATE EVENTS
 
 //New Game Welcome Wait Event Listener
-socket.on('newGame', function (data) {
-  var message = 'Hello, ' + data.name +
-    '. Please ask your friend to enter Game ID: ' +
-    data.room + '. Waiting for player 2...';
-    roomID=data.room;
+socket.on("newGame", function(data) {
+  var message =
+    "Hello, " +
+    data.name +
+    ". Please ask your friend to enter Game ID: " +
+    data.room +
+    ". Waiting for player 2...";
+  roomID = data.room;
   $("#msg").html(message);
-})
+});
 //Player1 Joined Game Listener
-socket.on('player1', function (data) {
-  var message = 'Hello , ' + playerName;
-  $('#msg').html(message);
-  $('#player2Name').html(data.oppName);
-  socket.emit('joinedGame', {
+socket.on("player1", function(data) {
+  var message = "Hello , " + playerName;
+  $("#msg").html(message);
+  $("#player2Name").html(data.oppName);
+  socket.emit("joinedGame", {
     room: roomID,
     player: playerName
   });
-  $('.gamePlay').css("display", "block");
-})
+  $(".gamePlay").css("display", "block");
+});
 //Player2 Joined Game Listener
-socket.on('player2', function (data) {
-  var message = 'Hello , ' + playerName;
-  $('#msg').html(message);
-})
+socket.on("player2", function(data) {
+  var message = "Hello , " + playerName;
+  $("#msg").html(message);
+});
 //Update the Creater's Name Listener
-socket.on('welcomeGame', function (data) {
+socket.on("welcomeGame", function(data) {
   $("#player1Name").html(data);
-  $('.gamePlay').css("display", "block");
-})
+  $(".gamePlay").css("display", "block");
+});
 //Error Listener
-socket.on('err', function (err) {
+socket.on("err", function(err) {
   alert(err.message);
   location.reload();
-})
+});
 //Result Listener
-socket.on('result', function (data) {
+socket.on("result", function(data) {
   if (playerType) {
     showWinner(data.winner, data.choice2);
   } else {
     showWinner(data.winner, data.choice1);
   }
-})
+});
 
 //CHAT EVENTS
 
 //Listening to incoming message
-socket.on('chat', function (data) {
+socket.on("chat", function(data) {
   feedback.innerHTML = "";
-  output.innerHTML += '<p><strong>' + data.handle + '</strong> : ' + data.message + '</p>';
+  output.innerHTML +=
+    "<p><strong>" + data.handle + "</strong> : " + data.message + "</p>";
 });
 //Listening to typing
-socket.on('typing', function (data) {
-  feedback.innerHTML = data + ' is typing a message';
+socket.on("typing", function(data) {
+  feedback.innerHTML = data + " is typing a message";
 });
 
 // Play game
@@ -136,17 +145,31 @@ function play(e) {
   //restart.style.display = "inline-block";
   playerChoice = e.target.id;
   if (playerType) {
-    socket.emit('choice1',{
-      choice:playerChoice,
-      room:roomID
-    })
+    socket.emit("choice1", {
+      choice: playerChoice,
+      room: roomID
+    });
   } else {
-    socket.emit('choice2', {
-      choice:playerChoice,
-      room:roomID
-    })
+    socket.emit("choice2", {
+      choice: playerChoice,
+      room: roomID
+    });
   }
 }
+//Chat Open
+$(".chat").on("click", function() {
+  $("#players-chat").css("background", "rgba(0, 0, 0, 0.3)");
+  $("#players-chat").css("z-index", "1");
+  $("#chat-window").slideDown();
+  $(".chat").hide();
+});
+//Chat CLose
+$("#chatClose").on("click", function() {
+  $("#players-chat").css("background", "none");
+  $("#players-chat").css("z-index", "-1");
+  $("#chat-window").slideUp();
+  $(".chat").show();
+});
 // Get computers choice
 // function getComputerChoice() {
 //   const rand = Math.random();
@@ -165,7 +188,7 @@ function ResultDisplay(res, opponentChoice) {
     res.slice(1)}</h1>
       <i class="fas fa-hand-${opponentChoice} fa-10x"></i>
       <p>Opponent Chose <strong>${opponentChoice.charAt(0).toUpperCase() +
-    opponentChoice.slice(1)}</strong></p>
+        opponentChoice.slice(1)}</strong></p>
     `;
 }
 function showWinner(winner, opponentChoice) {
@@ -174,18 +197,18 @@ function showWinner(winner, opponentChoice) {
     scoreboard.player1++;
     // Show modal result
     if (playerType) {
-      ResultDisplay('win', opponentChoice);
+      ResultDisplay("win", opponentChoice);
     } else {
-      ResultDisplay('lose', opponentChoice);
+      ResultDisplay("lose", opponentChoice);
     }
   } else if (winner === "2") {
     // Inc computer score
     scoreboard.player2++;
     // Show modal result
     if (!playerType) {
-      ResultDisplay('win', opponentChoice);
+      ResultDisplay("win", opponentChoice);
     } else {
-      ResultDisplay('lose', opponentChoice);
+      ResultDisplay("lose", opponentChoice);
     }
   } else {
     result.innerHTML = `

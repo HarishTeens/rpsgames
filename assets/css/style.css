@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 
-.gameBoard{
+.gameBoard {
   display: none;
 }
 
@@ -115,6 +115,61 @@ header {
   color: #c0392b;
 }
 
+.sub-main {
+  margin-top: 50px;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+}
+
+.sub-main .new,
+.sub-main .join {
+  display: flex;
+  flex-flow: column;
+  width: 40vw;
+  height: 200px;
+  margin: 30px 10px;
+  padding: 5px 10px;
+  align-items: center;
+  border: 2px solid #333;
+  border-radius: 10px;
+}
+::placeholder {
+  opacity: 0.4;
+}
+#chat-controls ::placeholder {
+  font-size: 25px;
+  color: white;
+}
+input {
+  outline: none;
+  border: none;
+  border-bottom: 2px solid #feca57;
+  margin: 5px 10px;
+  padding: 2px 0;
+  /* transform: scale(0); */
+  transition: 0.5s;
+}
+
+#new,
+#join {
+  border: none;
+  outline: none;
+  padding: 2px 10px;
+  color: #333;
+  background: #feca57;
+  border-radius: 10px;
+  margin-top: 10px;
+  width: 100%;
+  font-size: 20px;
+}
+
+#new:hover,
+#join:hover {
+  color: aliceblue;
+  opacity: 0.7;
+}
+
 @media (max-width: 700px) {
   .choices {
     display: flex;
@@ -127,21 +182,86 @@ header {
     display: flex;
     flex-direction: column;
   }
-  
-   .choice {
+
+  .choice {
     padding: 20px 0;
   }
+
+  .sub-main {
+    flex-direction: column;
+  }
+
+  .sub-main .new,
+  .sub-main .join {
+    width: 100%;
+  }
 }
-#player-chat{
-  flex-flow: column;
-  display: flex;  
-}
-#chat-window{
-  margin-top: 10px;
-  height: 280px;
-  border: 1px solid blue;
-  box-shadow: #01a3a4
-}
-.gamePlay{
+
+#chat-window {
+  border: 3px solid #fff;
+  box-shadow: #01a3a4;
+  background: rgba(0, 0, 0, 0.8);
+  width: 92%;
+  height: 92%;
+  padding: 10px;
+  margin: 30px;
+  border-radius: 10px;
   display: none;
 }
+
+#players-chat {
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+#chat-controls {
+  margin: 5px auto;
+  bottom: 40px;
+  position: fixed;
+  width: 90%;
+}
+
+#chat-controls input {
+  margin-left: 5px;
+  width: 60%;
+  background: inherit;
+  color: white;
+  font-weight: 700;
+  font-size: 25px;
+}
+#chat-controls button {
+  border: none;
+  outline-color: none;
+  background: #feca57;
+  color: #333;
+  padding: 0 10px;
+  border-radius: 10px;
+  width: 30%;
+  font-size: 25px;
+}
+.chat {
+  z-index: 300;
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  font-size: 30px;
+  color: #feca57;
+  cursor: pointer;
+}
+#chatClose {
+  color: white;
+  float: right;
+  cursor: pointer;
+}
+#output p {
+  color: white;
+  font-size: 25px;
+}
+
+/* .gamePlay {
+  display: none;
+} */
