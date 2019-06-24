@@ -116,6 +116,7 @@ header {
 }
 
 .sub-main {
+  margin-right: 20px;
   margin-top: 50px;
   display: flex;
   flex-flow: row;
@@ -197,10 +198,10 @@ input {
   }
   #chat-window {
     width: 82%;
-    height: 92;
+    height: 92%;
   }
   #chat-controls {
-    width: 70%;
+    width: 70% !important;
   }
   .fa-5x {
     font-size: 3em !important;
@@ -211,7 +212,7 @@ input {
   border: 3px solid #fff;
   box-shadow: #01a3a4;
   background: rgba(0, 0, 0, 0.8);
-  width: 92%;
+  width: 82%;
   height: 92%;
   padding: 10px;
   margin: 30px;
@@ -267,9 +268,17 @@ input {
   float: right;
   cursor: pointer;
 }
+#output {
+  padding: 0 5px;
+  overflow: scroll;
+}
 #output p {
   color: white;
   font-size: 25px;
+}
+#chat-window #feedback {
+  color: white;
+  font-size: 20px;
 }
 
 /* .gamePlay {
