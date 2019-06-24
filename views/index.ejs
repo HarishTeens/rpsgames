@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/modal.css" />
     <link rel="shortcut icon" href="/icons/rps.ico" type="image/x-icon" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" ></script>
-    <script src="https://kit.fontawesome.com/68605beeba.js"></script>
+    <script src="/js/socket.io.js"></script>
+    <script src="/js/fontawesome.js"></script>
     <title>Rock Paper Scissors G.</title>
   </head>
+
   <body>
     <header>
       <h1>
@@ -21,27 +22,78 @@
     </header>
 
     <section>
-      <div class="container">
-        <button id="restart" class="res-btn">Restart Game</button>
-        <div id="score" class="score">
-          <p><span id="player1Name"></span> : <span id="p1">0</span></p>
-          <p><span id="player2Name"></span> : <span id="p2">0</span></p>          
-        </div>        
-        <h2>Make your selection</h2>
-        <div class="choices">
-          <i id="rock" class="choice fas fa-hand-rock fa-10x"></i>
-          <i id="paper" class="choice fas fa-hand-paper fa-10x"></i>
-          <i id="scissors" class="choice fas fa-hand-scissors fa-10x"></i>
-        </div>
-        <div id="players-chat">
-          <div id="chat-window">
-            <div id="output"></div>
-            <div id="feedback"></div>
+      <div class="container" id="c1">
+        <div class="menu">
+          <h3>How To Play</h3>
+          <ol>
+            <li>Player 1: Create a new game by entering the username</li>
+            <li>
+              Player 2: Enter another username and the room id that is displayed
+              on first window.
+            </li>
+            <li>Click on join game.</li>
+          </ol>
+          <h4>Create a new Game</h4>
+
+          <div class="sub-main">
+            <form onsubmit="return false;">
+              <input
+                type="text"
+                name="name"
+                id="nameNew"
+                placeholder="Enter your name"
+                required
+              />
+              <button id="new">New Game</button>
+            </form>
+            <br /><br />
+            <h4>Join an existing game</h4>
+            <form onsubmit="return false;">
+              <input
+                type="text"
+                name="name"
+                id="nameJoin"
+                placeholder="Enter your name"
+                required
+              />
+              <input
+                type="text"
+                name="room"
+                id="room"
+                placeholder="Enter Game ID"
+                required
+              />
+              <button id="join">Join Game</button>
+            </form>
           </div>
-          <div id="chat-controls">
-            <input type="text" id="handle" placeholder="Handle">
-            <input type="text" id="message" placeholder="Message">
-            <button id="send">Send</button>
+        </div>
+        <div class="gameBoard">
+          <h1 id="msg"></h1>
+          <h2 id="turn"></h2>
+          <!-- <button id="restart" class="res-btn">Restart Game</button> -->
+          <div id="score" class="score">
+            <p><span id="player1Name"></span> : <span id="p1">0</span></p>
+            <p><span id="player2Name"></span> : <span id="p2">0</span></p>
+          </div>
+          <div class="gamePlay">
+            <h2>Make your selection</h2>
+            <div class="choices">
+              <i id="rock" class="choice fas fa-hand-rock fa-10x"></i>
+              <i id="paper" class="choice fas fa-hand-paper fa-10x"></i>
+              <i id="scissors" class="choice fas fa-hand-scissors fa-10x"></i>
+            </div>
+            <div id="players-chat">
+              <div id="chat-window">
+                <div id="output"></div>
+                <div id="feedback"></div>
+              </div>
+              <div id="chat-controls">
+                <form onsubmit="return false;">
+                  <input type="text" id="message" placeholder="Message" after />
+                  <button id="send">Send</button>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -52,9 +104,10 @@
       <div id="result" class="modal-content"></div>
     </div>
     <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
     <script src="/js/script.js"></script>
   </body>
 </html>

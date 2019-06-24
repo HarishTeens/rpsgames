@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+.gameBoard{
+  display: none;
+}
+
 body {
   font-family: "Inconsolata", monospace;
   line-height: 1.6;
@@ -137,4 +141,7 @@ header {
   height: 280px;
   border: 1px solid blue;
   box-shadow: #01a3a4
+}
+.gamePlay{
+  display: none;
 }

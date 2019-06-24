@@ -46,9 +46,9 @@ function getWinner(p, c) {
     }
 }
 //Function to do executed after gettin both choices
-function result() {
+function result(roomID) {
     var winner = getWinner(choice1, choice2);
-    io.sockets.emit('result', {
+    io.sockets.to(roomID).emit('result', {
         winner: winner,
         choice1: choice1,
         choice2: choice2
@@ -74,7 +74,7 @@ io.on('connection', function (socket) {
         if (room) {
             if (room.length == 1) {
                 socket.join(data.room);
-                socket.broadcast.to(data.room).emit('player1', { oppName: data.name });
+                socket.broadcast.to(data.room).emit('player1', {oppName: data.name });
                 socket.emit('player2', { name: data.name, room: data.room })
             }
             else {
@@ -85,32 +85,30 @@ io.on('connection', function (socket) {
         }
     });
     //Listener to pass the name of the game creater
-    socket.on('joinedGame', function (data) {
-        socket.broadcast.emit('welcomeGame', data);
+    socket.on('joinedGame', function (data) {        
+        console.log("Joined Game ",data);
+        socket.broadcast.to(data.room).emit('welcomeGame', data.player);
     })
     //Listener to Player 1's Choice
-    socket.on('choice1', function (c1) {
-        choice1 = c1;
+    socket.on('choice1', function (data) {
+        choice1 = data.choice;
         if (choice2 != "") {
-            result();
+            result(data.room);
         }
     })
     //Listener to Player 2's Choice
-    socket.on('choice2', function (c2) {
-        choice2 = c2;
+    socket.on('choice2', function (data) {
+        choice2 = data.choice;
         if (choice1 != "") {
-            result();
+            result(data.room);
         }
     })
 
     //Listener to Chat Messages
     socket.on('chat', function (data) {
-        io.sockets.emit('chat', data);
+        io.sockets.to(data.room).emit('chat', data);
     })
     socket.on('typing', function (data) {
-        socket.broadcast.emit('typing', data);
-    })
-    socket.on('player', function (data) {
-        socket.broadcast.emit('opponent', data);
-    })
+        socket.broadcast.to(data.room).emit('typing', data.player);
+    })   
 })
