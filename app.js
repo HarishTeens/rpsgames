@@ -1,6 +1,7 @@
 var expresss = require("express");
 var express = expresss();
 var socket = require("socket.io");
+var randomstring = require("randomstring");
 
 express.set("view engine", "ejs");
 express.use(expresss.static("assets"));
@@ -16,7 +17,6 @@ var server = express.listen(3000, function() {
 //Socket Setup
 var io = socket(server);
 //GAME VARIABLES
-var rooms = 1;
 var choice1 = "",
   choice2 = "";
 
@@ -76,10 +76,13 @@ io.on("connection", function(socket) {
 
   //Create Game Listener
   socket.on("createGame", function(data) {
-    socket.join("room-" + ++rooms);
+    var rooms = randomstring.generate({
+      length: 4
+    });
+    socket.join(rooms);
     socket.emit("newGame", {
       name: data.name,
-      room: "room-" + rooms
+      room: rooms
     });
   });
   //Join Game Listener

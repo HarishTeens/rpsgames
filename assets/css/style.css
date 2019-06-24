@@ -184,7 +184,7 @@ input {
   }
 
   .choice {
-    padding: 20px 0;
+    padding: 10px 0;
   }
 
   .sub-main {
@@ -194,6 +194,16 @@ input {
   .sub-main .new,
   .sub-main .join {
     width: 100%;
+  }
+  #chat-window {
+    width: 82%;
+    height: 92;
+  }
+  #chat-controls {
+    width: 70%;
+  }
+  .fa-5x {
+    font-size: 3em !important;
   }
 }
 
