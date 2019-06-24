@@ -1,5 +1,5 @@
 //MAKE CONNECTION TO THE SOCKET
-var socket = io.connect("http://localhost:3000");
+var socket = io.connect("http://rpsgames.herokuapp.com");
 
 //VARIABLES AND CONSTANTS
 let playerChoice;
