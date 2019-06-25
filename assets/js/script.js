@@ -139,14 +139,17 @@ socket.on("result", function(data) {
 //Listening to incoming message
 socket.on("chat", function(data) {
     //feedback.innerHTML = "";
-    $("#output #fb:last").remove();
-    output.innerHTML +=
-        "<p><strong>" + data.handle + "</strong> : " + data.message + "</p>";
+    if ($('#output').children().last().attr('id') === "fb") {
+        $("#output #fb:last").remove();
+        output.innerHTML +=
+            "<p><strong>" + data.handle + "</strong> : " + data.message + "</p>";
 
-    // allow 1px inaccuracy by adding 1
-    var isScrolledToBottom = output.scrollHeight - output.clientHeight <= output.scrollTop + 1;
-    if (!isScrolledToBottom)
-        output.scrollTop = output.scrollHeight - output.clientHeight;
+        // allow 1px inaccuracy by adding 1
+        var isScrolledToBottom = output.scrollHeight - output.clientHeight <= output.scrollTop + 1;
+        if (!isScrolledToBottom)
+            output.scrollTop = output.scrollHeight - output.clientHeight;
+    }
+
     console.log(isScrolledToBottom);
 });
 //Listening to typing
@@ -154,11 +157,12 @@ socket.on("typing", function(data) {
     if ($('#output').children().last().attr('id') != "fb") {
         output.innerHTML +=
             "<p id='fb' style='color:#00fe00' >" + data + " is typing  </p>";
+        // allow 1px inaccuracy by adding 1
+        var isScrolledToBottom = output.scrollHeight - output.clientHeight <= output.scrollTop + 1;
+        if (!isScrolledToBottom)
+            output.scrollTop = output.scrollHeight - output.clientHeight;
     }
-    // allow 1px inaccuracy by adding 1
-    var isScrolledToBottom = output.scrollHeight - output.clientHeight <= output.scrollTop + 1;
-    if (!isScrolledToBottom)
-        output.scrollTop = output.scrollHeight - output.clientHeight;
+
 });
 
 // Play game
