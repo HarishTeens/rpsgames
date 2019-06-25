@@ -36,7 +36,7 @@ btn.addEventListener("click", function() {
     });
 });
 //Typing Event Listener
-message.addEventListener("keypress", function() {
+message.addEventListener("keydown", function() {
     socket.emit("typing", {
         room: roomID,
         player: playerName
