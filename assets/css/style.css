@@ -41,6 +41,7 @@ body {
     -webkit-border-radius: 10px;
     border-radius: 10px;
     background: rgba(240, 235, 235, 0.8);
+    bottom: 0;
 }
 
 #output::-webkit-scrollbar-thumb:window-inactive {
@@ -53,7 +54,8 @@ header {
     padding: 0 10px;
 }
 
-.rock {
+
+/* .rock {
     color: #ff6b6b;
 }
 
@@ -63,7 +65,7 @@ header {
 
 .scissors {
     color: #feca57;
-}
+} */
 
 .container {
     max-width: 1100px;
@@ -86,10 +88,11 @@ header {
     margin: 1rem 0;
 }
 
-.res-btn:hover {
+
+/* .res-btn:hover {
     background: #feca57;
     color: aliceblue;
-}
+} */
 
 .score {
     display: grid;
@@ -295,7 +298,7 @@ input {
 #output {
     height: 90%;
     padding: 0 5px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 #output p {
@@ -359,5 +362,8 @@ input {
         border-radius: 10px;
         width: 30%;
         font-size: 25px;
+    }
+    .choice:hover {
+        color: #333;
     }
 }
