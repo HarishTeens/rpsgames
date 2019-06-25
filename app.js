@@ -13,9 +13,7 @@ express.get("/", function(req, res) {
 //Server Setup
 if (process.env.PORT) {
     var server = express.listen(process.env.PORT, process.env.IP, function() {
-        var server = express.listen(process.env.PORT, process.env.IP, function() {
-            console.log("THe Server is running");
-        });
+        console.log("THe Server is running");
     });
 } else {
     var server = express.listen(3000, function() {
