@@ -269,6 +269,7 @@ input {
 }
 
 .chat {
+    background-image: url(/icons/chatIcon.png);
     z-index: 300;
     position: fixed;
     bottom: 5%;
@@ -276,6 +277,20 @@ input {
     font-size: 30px;
     color: #feca57;
     cursor: pointer;
+    height: 32px;
+    width: 32px;
+}
+
+.jewelcount {
+    display: none;
+    color: white;
+    font-size: 15px;
+    position: absolute;
+    right: 1px;
+    top: -20px;
+    background: red;
+    border-radius: 60px;
+    padding: 3px;
 }
 
 #chatClose {

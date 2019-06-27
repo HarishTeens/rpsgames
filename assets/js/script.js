@@ -162,7 +162,18 @@ socket.on("chat", function(data) {
     if (!isScrolledToBottom)
         output.scrollTop = output.scrollHeight - output.clientHeight;
 
-    console.log(isScrolledToBottom);
+    if ($("#chat-window").css("display") === "none") {
+        let cnt = $(".chat .jewelcount");
+        if (cnt.html() === "") {
+            cnt.html(1);
+            cnt.fadeIn();
+            cnt.css("display", "flex");
+        } else {
+            cnt.html(parseInt(cnt.html()) + 1);
+        }
+    }
+    let audio = new Audio('/sounds/msgalert.ogg');
+    audio.play();
 });
 //Listening to typing
 socket.on("typing", function(data) {
@@ -198,8 +209,9 @@ function play(e) {
 $(".chat").on("click", function() {
     $("#players-chat").css("background", "rgba(0, 0, 0, 0.3)");
     $("#players-chat").css("z-index", "1");
-    $("#chat-window").slideDown();
+    $(".chat .jewelcount").html("").hide();
     $(".chat").hide();
+    $("#chat-window").slideDown();
 });
 //Chat CLose
 $("#chatClose").on("click", function() {
