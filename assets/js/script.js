@@ -29,11 +29,13 @@ const scoreboard = {
 
 //Chat Event Listener
 btn.addEventListener("click", function() {
-    socket.emit("chat", {
-        message: message.value,
-        handle: playerName,
-        room: roomID
-    });
+    if (message.value) {
+        socket.emit("chat", {
+            message: message.value,
+            handle: playerName,
+            room: roomID
+        });
+    }
 });
 //Typing Event Listener
 message.addEventListener("keydown", function() {
@@ -139,8 +141,21 @@ socket.on("result", function(data) {
 //Listening to incoming message
 socket.on("chat", function(data) {
     $("#output #fb:last").remove();
+    let today = new Date();
+    let curTime = today.getHours() + ':' + today.getMinutes();
+    let side = data.handle === playerName ? "right" : "left";
     output.innerHTML +=
-        "<p><strong>" + data.handle + "</strong> : " + data.message + "</p>";
+        '<div class="msg ' + side + '-msg">' +
+        '<div class="msg-bubble">' +
+        '<div class="msg-info">' +
+        '<div class="msg-info-name">' + data.handle + '</div>' +
+        '<div class="msg-info-time">' + curTime + '</div>' +
+        '</div>' +
+        '<div class="msg-text">' +
+        data.message +
+        '</div>' +
+        '</div>' +
+        '</div> ';
 
     // allow 1px inaccuracy by adding 1
     var isScrolledToBottom = output.scrollHeight - output.clientHeight <= output.scrollTop + 1;
@@ -164,8 +179,8 @@ socket.on("typing", function(data) {
 function play(e) {
     //restart.style.display = "inline-block";
     if (playerChoice === "") {
-        playerChoice = e.target.id;
-        $("#" + e.target.id).css("color", "#c72121");
+        playerChoice = e;
+        $("#" + e).css("color", "#c72121");
         if (playerType) {
             socket.emit("choice1", {
                 choice: playerChoice,
@@ -193,17 +208,6 @@ $("#chatClose").on("click", function() {
     $("#chat-window").slideUp();
     $(".chat").show();
 });
-// Get computers choice
-// function getComputerChoice() {
-//   const rand = Math.random();
-//   if (rand < 0.34) {
-//     return "rock";
-//   } else if (rand <= 0.67) {
-//     return "paper";
-//   } else {
-//     return "scissors";
-//   }
-// }
 
 function ResultDisplay(res, opponentChoice) {
     result.innerHTML = `
@@ -266,6 +270,9 @@ function clearModal(e) {
 }
 
 // Event listeners
-choices.forEach(choice => choice.addEventListener("click", play));
+//choices.forEach(choice => choice.addEventListener("click", play));
+$(".choices").on('click', '[data-fa-i2svg]', function() {
+    play($(this)[0].id);
+});
 window.addEventListener("click", clearModal);
 //restart.addEventListener("click", restartGame);

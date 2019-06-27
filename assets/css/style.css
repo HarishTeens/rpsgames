@@ -54,18 +54,11 @@ header {
     padding: 0 10px;
 }
 
-
-/* .rock {
-    color: #ff6b6b;
+#rock,
+#paper,
+#scissors {
+    margin: auto;
 }
-
-.paper {
-    color: #01a3a4;
-}
-
-.scissors {
-    color: #feca57;
-} */
 
 .container {
     max-width: 1100px;
@@ -232,7 +225,6 @@ input {
     border: 3px solid #fff;
     box-shadow: #01a3a4;
     background: rgba(0, 0, 0, 0.8);
-    width: 96%;
     height: 92%;
     padding: 10px;
     margin: 30px;
@@ -278,7 +270,7 @@ input {
 
 .chat {
     z-index: 300;
-    position: absolute;
+    position: fixed;
     bottom: 5%;
     right: 5%;
     font-size: 30px;
@@ -287,8 +279,8 @@ input {
 }
 
 #chatClose {
-    color: white;
-    float: right;
+    color: #DC143C;
+    margin-bottom: 10px;
 }
 
 #chatClose:hover {
@@ -330,11 +322,10 @@ input {
         width: 100%;
     }
     #chat-window {
-        width: 82%;
         height: 92%;
     }
     #chat-controls {
-        width: 70% !important;
+        width: 78% !important;
     }
     .fa-5x {
         font-size: 3em !important;
