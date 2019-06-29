@@ -172,8 +172,11 @@ socket.on("chat", function(data) {
             cnt.html(parseInt(cnt.html()) + 1);
         }
     }
-    let audio = new Audio('/sounds/msgalert.ogg');
-    audio.play();
+    if (side === "left") {
+        let audio = new Audio('/sounds/msgalert.ogg');
+        audio.play();
+    }
+
 });
 //Listening to typing
 socket.on("typing", function(data) {
