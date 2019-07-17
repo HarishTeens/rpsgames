@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link href="/css/all.css">    
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/modal.css" />
+    <link rel="shortcut icon" href="/icons/rps.ico" type="image/x-icon" />
+    <title>Rock Paper Scissors G</title>
+  </head>
+  <body>
+    <div class="loader">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- effect -->
+    <div class="main">
+      <header>        
+        <h1>
+          <span class="rock">Rock</span>
+          <span class="paper">Paper</span>
+          <span class="scissors">Scissors</span>
+        </h1>
+      </header>
+
+      <section>
+        <div class="container">
+          <button id="restart" class="res-btn">Restart Game</button>
+          <div id="score" class="score">
+            <p>Player: 0</p>
+            <p>Computer: 0</p>
+          </div>
+          <h2>Make your selection</h2>
+          <div class="choices">
+            <i id="rock" class="choice fas fa-hand-rock fa-10x"></i>
+            <i id="paper" class="choice fas fa-hand-paper fa-10x"></i>
+            <i id="scissors" class="choice fas fa-hand-scissors fa-10x"></i>
+          </div>
+        </div>
+      </section>
+
+      <!-- modal -->
+      <div class="modal">
+        <div id="result" class="modal-content"></div>
+      </div>
+    </div>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/all.js"></script>
+    <script src="/js/computer.js"></script>
+  </body>
+</html>

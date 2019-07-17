@@ -9,6 +9,12 @@ express.use(expresss.static("assets"));
 express.get("/", function(req, res) {
     res.render("index");
 });
+express.get("/computer", function(req, res) {
+    res.render("computer");
+});
+express.get("/multiplayer", function(req, res) {
+    res.render("multiplayer");
+});
 
 //Server Setup
 if (process.env.PORT) {
