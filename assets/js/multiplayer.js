@@ -1,5 +1,5 @@
 //MAKE CONNECTION TO THE SOCKET
-//var socket = io.connect("http://localhost:3000");
+// var socket = io.connect("http://localhost:3000");
 var socket = io.connect("http://rpsgames.herokuapp.com");
 
 //VARIABLES AND CONSTANTS
@@ -66,7 +66,7 @@ $("#new").on("click", function() {
         alert("Please enter your name.");
         return;
     }
-    socket.emit("createGame", { name: name });
+    socket.emit("createGame", { name: playerName });
     $(".menu").fadeOut();
     $(".gameBoard").fadeIn();
 });
@@ -99,6 +99,13 @@ socket.on("newGame", function(data) {
     roomID = data.room;
     $("#msg").html(message);
 });
+// When one player leaves. Another player should get notified
+socket.on("informAboutExit", function(data) {
+    var { leaver } = data
+    if(confirm(`Player ${leaver.name} left the game. Do you want to go back to play with computer? `)) {
+        history.back();
+    }
+})
 //Player1 Joined Game Listener
 socket.on("player1", function(data) {
     var message = "Hello , " + playerName;
@@ -109,7 +116,7 @@ socket.on("player1", function(data) {
         player: playerName
     });
     $(".gamePlay").css("display", "block");
-});
+}); 
 //Player2 Joined Game Listener
 socket.on("player2", function(data) {
     var message = "Hello , " + playerName;
