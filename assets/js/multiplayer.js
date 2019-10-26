@@ -113,11 +113,13 @@ socket.on("player1", function(data) {
 //Player2 Joined Game Listener
 socket.on("player2", function(data) {
     var message = "Hello , " + playerName;
+    $("#opposite-player-name").html(playerName);
     $("#msg").html(message);
 });
 //Update the Creater's Name Listener
 socket.on("welcomeGame", function(data) {
     $("#player1Name").html(data);
+    $("#opposite-player-name").html(data);
     $(".gamePlay").css("display", "block");
 });
 //Error Listener
@@ -182,7 +184,7 @@ socket.on("chat", function(data) {
 socket.on("typing", function(data) {
     $("#output #fb:last").remove();
     output.innerHTML +=
-        "<p id='fb' style='color:#00fe00' >" + data + " is typing  </p>";
+        "<p id='fb'>" + data + " is typing ... </p>";
     // allow 1px inaccuracy by adding 1
     var isScrolledToBottom = output.scrollHeight - output.clientHeight <= output.scrollTop + 1;
     if (!isScrolledToBottom)

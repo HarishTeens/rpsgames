@@ -192,6 +192,13 @@ header {
     color: white;
 }
 
+#chat-controls form{
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    border-top: 3px solid #fff;
+}
+
 input {
     outline: none;
     border: none;
@@ -226,10 +233,10 @@ input {
     box-shadow: #01a3a4;
     background: rgba(0, 0, 0, 0.8);
     height: 92%;
-    padding: 10px;
     margin: 30px;
     border-radius: 10px;
     display: none;
+    position: relative;
 }
 
 #players-chat {
@@ -242,30 +249,35 @@ input {
 }
 
 #chat-controls {
-    margin: 5px auto;
-    bottom: 40px;
-    position: fixed;
-    width: 98%;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    background: #000;
+    border-radius: 0 0 10px 10px;
 }
 
 #chat-controls input {
-    margin-left: 10px;
-    width: 68%;
+    width: 80%;
     background: inherit;
     color: white;
     font-weight: 600;
     font-size: 20px;
-    padding: 0 5px;
+    margin: 0;
+    border-right: 3px solid #fff;
+    padding: 10px 15px;
+    border-bottom: none;
 }
 
 #chat-controls button {
     border: none;
     outline: none;
-    background: #feca57;
+    background: #fff;
     color: #333;
     padding: 0 10px;
-    border-radius: 10px;
     font-size: 25px;
+    width: 20%;
 }
 
 .chat {
@@ -295,7 +307,35 @@ input {
 
 #chatClose {
     color: #DC143C;
-    margin-bottom: 10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #fff;
+    border-radius: 50%;
+    width: 40px;
+    padding: 0;
+    height: 40px;
+    transform: translate(50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#opposite-player-name{
+    color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: #000;
+    margin: 0;
+    padding: 6px;
+    border-bottom: 3px solid #fff;
+    border-radius: 10px 10px 0 0;
+}
+#chatClose svg{
+    width: 35px;
+    height: 35px;
 }
 
 #chatClose:hover {
@@ -303,14 +343,15 @@ input {
 }
 
 #output {
-    height: 75%;
-    padding: 0 5px;
+    height: 100%;
+    padding: 55px 0;
     overflow-y: auto;
 }
 
 #output p {
     color: white;
     font-size: 20px;
+    font-style: italic;
 }
 
 #chat-window #feedback {
@@ -339,35 +380,14 @@ input {
     #chat-window {
         height: 92%;
     }
-    #chat-controls {
-        width: 78% !important;
-    }
     .fa-5x {
         font-size: 3em !important;
     }
-    #chat-controls {
-        margin: 5px auto;
-        bottom: 40px;
-        position: fixed;
-        width: 90%;
-    }
     #chat-controls input {
-        margin-left: 5px;
-        width: 60%;
-        background: inherit;
-        color: white;
-        font-weight: 700;
-        font-size: 25px;
+        width: 75%;
     }
     #chat-controls button {
-        border: none;
-        outline-color: none;
-        background: #feca57;
-        color: #333;
-        padding: 0 10px;
-        border-radius: 10px;
-        width: 30%;
-        font-size: 25px;
+        width: 25%;
     }
     .choice:hover {
         color: #333;
