@@ -9,7 +9,6 @@
 .msg {
     display: flex;
     align-items: flex-end;
-    margin-bottom: 10px;
 }
 
 .msg:last-of-type {
@@ -18,25 +17,32 @@
 
 .msg-bubble {
     max-width: 450px;
-    padding: 15px;
+    padding: 7px 15px;
     border-radius: 15px;
     background: var(--left-msg-bg);
+    margin: 5px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-direction: row-reverse;
 }
 
 .msg-info {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
 }
 
 .msg-info-name {
     margin-right: 10px;
     font-weight: bold;
+    display: none;
 }
 
 .msg-info-time {
     font-size: 0.85em;
+    margin-left: 15px;
+    color: #000;
 }
 
 .left-msg .msg-bubble {
@@ -49,7 +55,7 @@
 
 .right-msg .msg-bubble {
     background: var(--right-msg-bg);
-    color: #fff;
+    color: #000;
     border-bottom-right-radius: 0;
 }
 
