@@ -18,7 +18,7 @@ express.get("/multiplayer", function(req, res) {
 
 //Server Setup
 if (process.env.PORT) {
-    var server = express.listen(process.env.PORT, process.env.IP, function() {
+    var server = express.listen(process.env.PORT||80, process.env.IP, function() {
         console.log("THe Server is running");
     });
 } else {

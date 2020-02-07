@@ -192,7 +192,7 @@ header {
     color: white;
 }
 
-#chat-controls form{
+#chat-controls form {
     display: flex;
     justify-content: space-between;
     margin: 0;
@@ -320,7 +320,8 @@ input {
     align-items: center;
     justify-content: center;
 }
-#opposite-player-name{
+
+#opposite-player-name {
     color: #fff;
     position: absolute;
     top: 0;
@@ -333,7 +334,8 @@ input {
     border-bottom: 3px solid #fff;
     border-radius: 10px 10px 0 0;
 }
-#chatClose svg{
+
+#chatClose svg {
     width: 35px;
     height: 35px;
 }
@@ -394,5 +396,8 @@ input {
     }
     #output {
         height: 80%;
+    }
+    .choice:hover {
+        color: #000!important;
     }
 }

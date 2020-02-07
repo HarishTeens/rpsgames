@@ -89,6 +89,7 @@ function showWinner(winner, computerChoice) {
     `;
 
     modal.style.display = "block";
+    setTimeout(()=>{$('.modal').fadeOut(600)},1000)
 }
 
 // Restart game

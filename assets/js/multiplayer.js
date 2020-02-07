@@ -274,6 +274,7 @@ function showWinner(winner, opponentChoice) {
     $("#score #p2").html(scoreboard.player2);
 
     modal.style.display = "block";
+    setTimeout(()=>{$('.modal').fadeOut(600)},1000)
 }
 
 // Restart game
