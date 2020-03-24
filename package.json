@@ -10,11 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ejs": "^2.6.2",
+    "ejs": "^2.7.4",
     "express": "^4.17.1",
     "nodemon": "^1.19.4",
     "randomstring": "^1.1.5",
-    "socket.io": "^2.2.0",
-    "uuid": "^3.3.2"
+    "socket.io": "^2.3.0",
+    "uuid": "^3.4.0"
   }
 }
