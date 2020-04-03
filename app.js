@@ -2,6 +2,7 @@ var expresss = require("express");
 var express = expresss();
 var socket = require("socket.io");
 var randomstring = require("randomstring");
+const path = require('path');
 
 express.set("view engine", "ejs");
 express.use(expresss.static("assets"));
@@ -15,6 +16,10 @@ express.get("/computer", function(req, res) {
 express.get("/multiplayer", function(req, res) {
     res.render("multiplayer");
 });
+
+express.get("/loaderio-c22eb21e6fd039f5bb76ec284ff22809",(req,res)=>{
+    res.sendFile(path.join(__dirname+'/loaderio-c22eb21e6fd039f5bb76ec284ff22809.txt'));
+})
 
 //Server Setup
 if (process.env.PORT) {
